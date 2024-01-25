@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class UsersRepositoryImpl @Inject constructor(
-    private val usersDao: UsersDao
+    private val usersDao: UsersDao,
 ) : UsersRepository {
     override suspend fun addUsers(getUsers: GetUsers) {
         usersDao.addUser(getUsers.toUsersEntity())
@@ -20,6 +20,14 @@ class UsersRepositoryImpl @Inject constructor(
         return usersDao.getAllUsers().map { usersEntity ->
             usersEntity.map {
                 it.toDomain()
+            }
+        }
+    }
+
+    override suspend fun getUserByEmail(email: String): Flow<List<GetUsers>> {
+        return usersDao.getUserByEmail(email).map {
+            it.map { usersEntity ->
+                usersEntity.toDomain()
             }
         }
     }

@@ -20,7 +20,10 @@ interface UsersDao {
     @Query("DELETE FROM users WHERE email = :email")
     suspend fun deleteUserByEmail(email: String)
 
-    @Update
+    @Query("SELECT * FROM users WHERE email = :email")
+    fun getUserByEmail(email: String): Flow<List<UsersEntity>>
+
+    @Update(onConflict = OnConflictStrategy.IGNORE)
     suspend fun update(user: UsersEntity)
 
 }

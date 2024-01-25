@@ -2,9 +2,10 @@ package com.example.roomdbusers.data.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "users")
+@Entity(tableName = "users", indices = [Index(value = ["email"], unique = true)])
 data class UsersEntity (
     @PrimaryKey(autoGenerate = true)
     val id: Int,

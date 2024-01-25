@@ -4,5 +4,6 @@ import javax.inject.Inject
 
 data class AddOrDeleteUseCaseCollection @Inject constructor(
     val addUserUseCase: AddUserUseCase,
-    val deleteUserUseCase: DeleteUserUseCase
+    val deleteUserUseCase: DeleteUserUseCase,
+    val getUserByEmailUseCase: GetUserByEmailUseCase
 )

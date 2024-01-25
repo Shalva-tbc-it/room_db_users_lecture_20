@@ -9,6 +9,8 @@ interface UsersRepository {
 
     fun getAllUsers(): Flow<List<GetUsers>>
 
+    suspend fun getUserByEmail(email: String) : Flow<List<GetUsers>>
+
     suspend fun deleteUsersByEmail(email: String)
 
     suspend fun updateUser(getUsers: GetUsers)
